@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from core import models
 
 admin.site.register(models.Endereco)
+admin.site.register(models.Aluguel)
 
 # Configuração para adição de numero do saão
 
