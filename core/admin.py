@@ -7,6 +7,16 @@ from core import models
 admin.site.register(models.Endereco)
 admin.site.register(models.Aluguel)
 
+# Configuração para adição de imagem ao salao
+
+class ImagemInLine(admin.TabularInline):
+    model = models.FotoDecoracao
+    extra = 1
+
+class DecoracaoAdmin(admin.ModelAdmin):
+    inlines = [ImagemInLine]
+admin.site.register(models.Decoracao, DecoracaoAdmin)
+
 # Configuração para adição de numero do saão
 
 class TelefoneInline(admin.TabularInline):

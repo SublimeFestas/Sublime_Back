@@ -2,3 +2,4 @@ from .user import UserViewSet
 from .salao import SalaoViewSet
 from .endereco import EnderecoViewSet
 from .aluguel import AluguelViewSet
+from .decoracao import DecoracaoViewSet

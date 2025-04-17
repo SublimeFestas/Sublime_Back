@@ -3,7 +3,7 @@ from django.db import models
 class Aluguel(models.Model):
     data_festa = models.DateTimeField(verbose_name='Data da festa')
     data_cadastro = models.DateTimeField(auto_now_add=True)
-    salao = models.ForeignKey('core.Salao', on_delete=models.CASCADE, verbose_name='Salão')
+    salao = models.ForeignKey('core.Salao', on_delete=models.PROTECT, verbose_name='Salão')
     desc_festa = models.TextField(verbose_name='Descrição da festa')
 
     def __str__(self):
