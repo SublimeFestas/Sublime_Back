@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_spectacular',
     'rest_framework',
+    'uploader',
     'core',
 ]
 
@@ -111,8 +112,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # App Uploader settings
-MEDIA_ENDPOINT = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ENDPOINT = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 FILE_UPLOAD_PERMISSIONS = 0o640
 
 if MODE == 'DEVELOPMENT':
