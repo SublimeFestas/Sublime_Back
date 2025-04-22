@@ -7,7 +7,7 @@ from core import models
 admin.site.register(models.Endereco)
 admin.site.register(models.Aluguel)
 
-# Configuração para adição de imagem ao salao
+# Configuração para adição de imagem a decoração pelo admin
 
 class ImagemInLine(admin.TabularInline):
     model = models.FotoDecoracao
@@ -17,7 +17,7 @@ class DecoracaoAdmin(admin.ModelAdmin):
     inlines = [ImagemInLine]
 admin.site.register(models.Decoracao, DecoracaoAdmin)
 
-# Configuração para adição de numero do saão
+# Configuração para adição de numero do salão pelo admin
 
 class TelefoneInline(admin.TabularInline):
     model = models.TelefoneSalao
