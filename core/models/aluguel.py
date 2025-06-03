@@ -5,6 +5,7 @@ class Aluguel(models.Model):
     data_cadastro = models.DateTimeField(auto_now_add=True)
     salao = models.ForeignKey('core.Salao', on_delete=models.PROTECT, verbose_name='Salão')
     desc_festa = models.TextField(verbose_name='Descrição da festa')
+    decoracao = models.ForeignKey('core.Decoracao', on_delete=models.PROTECT, verbose_name='Decoração')
 
     def __str__(self):
         return f'Aluguel no salão {self.salao.id} em {self.data_festa}'
