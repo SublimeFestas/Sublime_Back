@@ -26,12 +26,12 @@ admin.site.register(models.Salao, SalaoAdmin)
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
-    list_display = ['email', 'name', 'is_staff', 'is_active']  # adicionei name, is_staff e is_active aqui
+    list_display = ['email', 'name', 'is_staff', 'is_active']
     list_filter = ['is_staff', 'is_active']
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('name', 'passage_id')}),
+        (_('Personal Info'), {'fields': ('name',)}),  # Removido passage_id
         (
             _('Permissions'),
             {
@@ -57,7 +57,7 @@ class UserAdmin(BaseUserAdmin):
                     'password1',
                     'password2',
                     'name',
-                    'passage_id',
+                    # 'passage_id',  # Removido
                     'is_active',
                     'is_staff',
                     'is_superuser',

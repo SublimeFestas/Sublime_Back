@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, Group
 from django.db import models
 from django.utils import timezone
 
@@ -10,6 +10,8 @@ class UserManager(BaseUserManager):
         user = self.model(email=email, name=name, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+        grupo, _ = Group.objects.get_or_create(name='cliente')
+        user.groups.add(grupo)
         return user
 
     def create_superuser(self, email, name, password=None, **extra_fields):
