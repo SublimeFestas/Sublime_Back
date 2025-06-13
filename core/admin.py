@@ -7,8 +7,6 @@ from core import models
 admin.site.register(models.Endereco)
 admin.site.register(models.Aluguel)
 
-# Configuração para adição de imagem a decoração pelo admin
-
 class ImagemInLine(admin.TabularInline):
     model = models.FotoDecoracao
     extra = 1
@@ -16,8 +14,6 @@ class ImagemInLine(admin.TabularInline):
 class DecoracaoAdmin(admin.ModelAdmin):
     inlines = [ImagemInLine]
 admin.site.register(models.Decoracao, DecoracaoAdmin)
-
-# Configuração para adição de numero do salão pelo admin
 
 class TelefoneInline(admin.TabularInline):
     model = models.TelefoneSalao
@@ -27,16 +23,12 @@ class SalaoAdmin(admin.ModelAdmin):
     inlines = [TelefoneInline]
 admin.site.register(models.Salao, SalaoAdmin)
 
-## -- ##
-
-
-# Configuração para adição de passage_id no admin
 
 class UserAdmin(BaseUserAdmin):
-    """Define the admin pages for users."""
-
     ordering = ['id']
-    list_display = ['email', 'name']
+    list_display = ['email', 'name', 'is_staff', 'is_active']  # adicionei name, is_staff e is_active aqui
+    list_filter = ['is_staff', 'is_active']
+
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Personal Info'), {'fields': ('name', 'passage_id')}),
@@ -65,6 +57,7 @@ class UserAdmin(BaseUserAdmin):
                     'password1',
                     'password2',
                     'name',
+                    'passage_id',
                     'is_active',
                     'is_staff',
                     'is_superuser',
@@ -74,5 +67,3 @@ class UserAdmin(BaseUserAdmin):
     )
 
 admin.site.register(models.User, UserAdmin)
-
-## -- ##
