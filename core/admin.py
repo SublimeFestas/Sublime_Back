@@ -5,8 +5,15 @@ from django.utils.translation import gettext_lazy as _
 from core import models
 
 admin.site.register(models.Endereco)
+admin.site.register(models.Aluguel)
 
-# Configuração para adição de numero do saão
+class ImagemInLine(admin.TabularInline):
+    model = models.FotoDecoracao
+    extra = 1
+
+class DecoracaoAdmin(admin.ModelAdmin):
+    inlines = [ImagemInLine]
+admin.site.register(models.Decoracao, DecoracaoAdmin)
 
 class TelefoneInline(admin.TabularInline):
     model = models.TelefoneSalao
@@ -16,19 +23,15 @@ class SalaoAdmin(admin.ModelAdmin):
     inlines = [TelefoneInline]
 admin.site.register(models.Salao, SalaoAdmin)
 
-## -- ##
-
-
-# Configuração para adição de passage_id no admin
 
 class UserAdmin(BaseUserAdmin):
-    """Define the admin pages for users."""
-
     ordering = ['id']
-    list_display = ['email', 'name']
+    list_display = ['email', 'name', 'is_staff', 'is_active']
+    list_filter = ['is_staff', 'is_active']
+
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('name', 'passage_id')}),
+        (_('Personal Info'), {'fields': ('name',)}),  # Removido passage_id
         (
             _('Permissions'),
             {
@@ -54,6 +57,7 @@ class UserAdmin(BaseUserAdmin):
                     'password1',
                     'password2',
                     'name',
+                    # 'passage_id',  # Removido
                     'is_active',
                     'is_staff',
                     'is_superuser',
@@ -63,5 +67,3 @@ class UserAdmin(BaseUserAdmin):
     )
 
 admin.site.register(models.User, UserAdmin)
-
-## -- ##
