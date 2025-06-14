@@ -1,64 +1,43 @@
-"""
-Database models.
-"""
-
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-    BaseUserManager,
-    PermissionsMixin,
-)
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, Group
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-
+from django.utils import timezone
 
 class UserManager(BaseUserManager):
-    """Manager for users."""
-
-    use_in_migrations = True
-
-    def create_user(self, email, password=None, **extra_fields):
-        """Create, save and return a new user."""
+    def create_user(self, email, name, password=None, **extra_fields):
         if not email:
-            raise ValueError('Users must have an email address.')
-
-        user = self.model(email=self.normalize_email(email), **extra_fields)
+            raise ValueError("O usuário deve ter um endereço de email")
+        email = self.normalize_email(email)
+        user = self.model(email=email, name=name, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
-
+        grupo, _ = Group.objects.get_or_create(name='cliente')
+        user.groups.add(grupo)
         return user
 
-    def create_superuser(self, email, password):
-        """Create, save and return a new superuser."""
-        user = self.create_user(email, password)
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using=self._db)
+    def create_superuser(self, email, name, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
 
-        return user
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser deve ter is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser deve ter is_superuser=True.')
+
+        return self.create_user(email, name, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    """User model in the system."""
+    email = models.EmailField(unique=True)
+    name = models.CharField(max_length=255, null=True, blank=True) ## ALTERAR
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(default=timezone.now)
 
-    passage_id = models.CharField(max_length=255, unique=True, verbose_name=_('passage_id'), help_text=_('Passage ID'))
-    email = models.EmailField(max_length=255, unique=True, verbose_name=_('email'), help_text=_('Email'))
-    name = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('name'), help_text=_('Username'))
-    is_active = models.BooleanField(
-        default=True, verbose_name=_('Usuário está ativo'), help_text=_('Indica que este usuário está ativo.')
-    )
-    is_staff = models.BooleanField(
-        default=False,
-        verbose_name=_('Usuário é da equipe'),
-        help_text=_('Indica que este usuário pode acessar o Admin.'),
-    )
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['name']
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-
-    class Meta:
-        """Meta options for the model."""
-
-        verbose_name = 'Usuário'
-        verbose_name_plural = 'Usuários'
+    def __str__(self):
+        return self.email
