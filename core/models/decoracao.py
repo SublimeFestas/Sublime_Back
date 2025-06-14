@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models import NULL
 from uploader.models import Image
 
 class Decoracao(models.Model):
@@ -15,7 +14,7 @@ class Decoracao(models.Model):
 
 class FotoDecoracao(models.Model):
     decoracao = models.ForeignKey(Decoracao, on_delete=models.CASCADE, related_name='fotos_decoracao', verbose_name='Decoração')
-    imagem = models.ForeignKey(Image, related_name="+", on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Imagem', default=NULL)
+    imagem = models.ForeignKey(Image, related_name="+", on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Imagem')
 
     def __str__(self):
         return f'Foto da decoração {self.decoracao.nome}'
