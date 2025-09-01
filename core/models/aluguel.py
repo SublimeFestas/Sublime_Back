@@ -4,8 +4,8 @@ from django.conf import settings
 
 class Aluguel(models.Model):
     TIPO_LOCACAO_CHOICES = [
-        ('SALAO', 'Salão'),
-        ('DECORACAO', 'Decoração'),
+        ('SALÃO', 'Salão'),
+        ('DECORAÇÃO', 'Decoração'),
         ('AMBOS', 'Salão e Decoração'),
     ]
 
@@ -36,6 +36,13 @@ class Aluguel(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name='Usuário',
+        null=True,
+        blank=True
+    )
+    valor_festa = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='Valor total da festa',
         null=True,
         blank=True
     )

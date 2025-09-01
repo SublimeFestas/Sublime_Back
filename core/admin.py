@@ -31,7 +31,7 @@ class UserAdmin(BaseUserAdmin):
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('name',)}),  # Removido passage_id
+        (_('Personal Info'), {'fields': ('name','phone')}),
         (
             _('Permissions'),
             {
@@ -57,7 +57,7 @@ class UserAdmin(BaseUserAdmin):
                     'password1',
                     'password2',
                     'name',
-                    # 'passage_id',  # Removido
+                    'phone',
                     'is_active',
                     'is_staff',
                     'is_superuser',
