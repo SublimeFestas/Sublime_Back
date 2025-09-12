@@ -2,6 +2,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.conf import settings
 
+from .servico import ServicoAdicional
+
 class Aluguel(models.Model):
     TIPO_LOCACAO_CHOICES = [
         ('SALÃO', 'Salão'),
@@ -46,6 +48,7 @@ class Aluguel(models.Model):
         null=True,
         blank=True
     )
+    servico = models.ManyToManyField(ServicoAdicional, related_name="servico", blank=True)
 
     def clean(self):
         if self.tipo_locacao == 'SALAO':
