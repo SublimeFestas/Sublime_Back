@@ -1,4 +1,3 @@
-from turtle import mode
 from django.db import models
 
 class Salao(models.Model):
@@ -12,8 +11,8 @@ class Salao(models.Model):
         return f'{self.nome} ({self.endereco.bairro}, {self.endereco.cidade})'	
 
 class TelefoneSalao(models.Model):
-    salao = models.ForeignKey(Salao, on_delete=models.CASCADE, related_name='telefones', verbose_name='Salao')
+    salao = models.ForeignKey(Salao, on_delete=models.CASCADE, related_name='telefones', verbose_name='Salão')
     numero = models.CharField(max_length=15, verbose_name='Número do telefone')
-    
+
     def __str__(self):
         return f'{self.salao.nome} ({self.numero})'
