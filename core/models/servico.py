@@ -9,4 +9,4 @@ class ServicoAdicional (models.Model):
     valor = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
-        return f'{self.nomeResponsavel}: {self.descricao}'
+        return f'{self.nomeServico}: {self.valor}'
