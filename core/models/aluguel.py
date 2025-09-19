@@ -49,7 +49,7 @@ class Aluguel(models.Model):
         blank=True
     )
     servico = models.ManyToManyField(ServicoAdicional, related_name="servico", blank=True)
-
+       
     def clean(self):
         if self.tipo_locacao == 'SALAO':
             if not self.salao:
