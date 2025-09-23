@@ -63,3 +63,4 @@ urllib3==2.4.0
 uvicorn==0.34.1
 virtualenv==20.30.0
 whitenoise[brotli]==6.9.0
+djangorestframework-simplejwt==5.5.0
