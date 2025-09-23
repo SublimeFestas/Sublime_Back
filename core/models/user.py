@@ -29,7 +29,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
-    name = models.CharField(max_length=255, null=True, blank=True) ## ALTERAR
+    name = models.CharField(max_length=255, null=True, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -41,3 +41,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def telefones_display(self):
+        return ", ".join([t.numero for t in self.telefones.all()])
+    telefones_display.short_description = "Telefones"
+
+class TelefoneUsuario(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='telefones', verbose_name='Usuário')
+    numero = models.CharField(max_length=15, verbose_name='Número do telefone')
+
+    def __str__(self):
+        return f'{self.user.email} ({self.numero})'

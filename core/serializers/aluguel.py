@@ -1,9 +1,21 @@
 from rest_framework import serializers
-from core.models import Aluguel 
+from core.models import Aluguel, User, ServicoAdicional
+
+class UserBaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'name', 'phone']
+
+class ServicoAdicionalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServicoAdicional
+        fields = ['id', 'nomeServico', 'valor']
 
 class AluguelSerializer(serializers.ModelSerializer):
     salao_nome = serializers.CharField(source='salao.nome', read_only=True)
-    
-    class Meta: 
+    user = UserBaseSerializer(read_only=True)
+    servico = ServicoAdicionalSerializer(many=True, read_only=True)  # <-- aqui
+
+    class Meta:
         model = Aluguel
         fields = '__all__'

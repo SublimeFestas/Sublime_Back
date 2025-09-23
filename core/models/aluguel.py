@@ -2,10 +2,12 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.conf import settings
 
+from .servico import ServicoAdicional
+
 class Aluguel(models.Model):
     TIPO_LOCACAO_CHOICES = [
-        ('SALAO', 'Salão'),
-        ('DECORACAO', 'Decoração'),
+        ('SALÃO', 'Salão'),
+        ('DECORAÇÃO', 'Decoração'),
         ('AMBOS', 'Salão e Decoração'),
     ]
 
@@ -39,6 +41,14 @@ class Aluguel(models.Model):
         null=True,
         blank=True
     )
+    valor_festa = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='Valor total da festa',
+        null=True,
+        blank=True
+    )
+    servico = models.ManyToManyField(ServicoAdicional, related_name="servico", blank=True)
 
     def clean(self):
         if self.tipo_locacao == 'SALAO':
