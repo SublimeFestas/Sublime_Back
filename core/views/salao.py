@@ -6,4 +6,3 @@ from core.serializers.salao import SalaoSerializer
 class SalaoViewSet(ModelViewSet):
     queryset = Salao.objects.all()
     serializer_class = SalaoSerializer
-    
