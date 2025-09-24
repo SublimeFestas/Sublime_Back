@@ -1,5 +1,5 @@
 from .user import UserViewSet
-from .salao import SalaoViewSet
+from .salao import SalaoViewSet, SalaoFotosViewSet
 from .endereco import EnderecoViewSet
 from .aluguel import AluguelViewSet
 from .decoracao import DecoracaoViewSet
