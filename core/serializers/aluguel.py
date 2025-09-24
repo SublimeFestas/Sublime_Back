@@ -4,7 +4,7 @@ from core.models import Aluguel, User, ServicoAdicional
 class UserBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'name', 'phone']
+        fields = ['id', 'email', 'name']
 
 class ServicoAdicionalSerializer(serializers.ModelSerializer):
     class Meta:
