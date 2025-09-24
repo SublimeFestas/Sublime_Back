@@ -5,3 +5,4 @@ from .aluguel import AluguelViewSet
 from .decoracao import DecoracaoViewSet
 from .token import TokenViewSet
 from .servico import ServicoViewset
+from .feedback import FeedbackViewSet

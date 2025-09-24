@@ -4,3 +4,4 @@ from .endereco import Endereco
 from .aluguel import Aluguel
 from .decoracao import Decoracao, FotoDecoracao
 from .servico import ServicoAdicional
+from .feedback import Feedback
