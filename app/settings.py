@@ -153,6 +153,13 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+}
+
 
 #PASSAGE_APP_ID = os.getenv('PASSAGE_APP_ID', 'app_id')
 #PASSAGE_API_KEY = os.getenv('PASSAGE_API_KEY', 'api_key')
