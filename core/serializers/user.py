@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import User
+from core.models import User, TelefoneUsuario
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -12,8 +12,14 @@ class UserCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
 
+class TelefoneUsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TelefoneUsuario
+        fields = ['numero']
 
 class UserSerializer(serializers.ModelSerializer):
+    telefones = TelefoneUsuarioSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ['id', 'email', 'name']
+        fields = ['id', 'email', 'name', 'telefones']
