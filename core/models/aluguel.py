@@ -2,6 +2,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.conf import settings
 
+from core.views import decoracao
+
 from .servico import ServicoAdicional
 
 class Aluguel(models.Model):
