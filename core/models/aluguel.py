@@ -2,6 +2,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.conf import settings
 
+from core.views import decoracao
+
 from .servico import ServicoAdicional
 
 class Aluguel(models.Model):
@@ -26,13 +28,15 @@ class Aluguel(models.Model):
         null=True,
         blank=True
     )
-    decoracao = models.ForeignKey(
-        'core.Decoracao',
-        on_delete=models.PROTECT,
-        verbose_name='Decoração',
-        null=True,
-        blank=True
-    )
+    #decoracao = models.ForeignKey(
+    #    'core.Decoracao',
+    #    on_delete=models.PROTECT,
+    #    verbose_name='Decoração',
+    #    null=True,
+    #    blank=True
+    #)
+    possui_decoracao = models.BooleanField(default=False)
+    decoracao = models.TextField(blank=True)
     desc_festa = models.TextField(verbose_name='Descrição da festa')
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
