@@ -8,23 +8,6 @@ from core.models import TelefoneUsuario
 admin.site.register(models.Endereco)
 admin.site.register(models.Aluguel)
 
-class ImagemInLine(admin.TabularInline):
-    model = models.FotoDecoracao
-    extra = 1
-
-class DecoracaoAdmin(admin.ModelAdmin):
-    inlines = [ImagemInLine]
-admin.site.register(models.Decoracao, DecoracaoAdmin)
-
-class TelefoneInline(admin.TabularInline):
-    model = models.TelefoneSalao
-    extra = 1
-
-class SalaoAdmin(admin.ModelAdmin):
-    inlines = [TelefoneInline]
-admin.site.register(models.Salao, SalaoAdmin)
-
-
 class TelefoneUsuarioInline(admin.TabularInline):
     model = TelefoneUsuario
     extra = 1

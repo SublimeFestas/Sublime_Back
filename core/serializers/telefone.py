@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import User, TelefoneUsuario, Salao, TelefoneSalao
+from core.models import User, TelefoneUsuario
 
 class TelefoneUsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,15 +12,3 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'name', 'telefones']
-
-class TelefoneSalaoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TelefoneSalao
-        fields = ['id', 'numero']
-
-class SalaoSerializer(serializers.ModelSerializer):
-    telefones = TelefoneSalaoSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Salao
-        fields = ['id', 'nome', 'endereco', 'telefones']
