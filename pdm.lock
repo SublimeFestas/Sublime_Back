@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:8f9f397e0ad76ac643ada39e4af5744e2e251aabb591ace8a1f39d2ea8812b7d"
+content_hash = "sha256:dd7007f465e3fa683b1f79afdf02f41d55f132d2fbf7e05efdec54ec670f80ce"
 
 [[metadata.targets]]
 requires_python = ">=3.10"
@@ -1479,6 +1479,16 @@ groups = ["default"]
 files = [
     {file = "setuptools-78.1.0-py3-none-any.whl", hash = "sha256:3e386e96793c8702ae83d17b853fb93d3e09ef82ec62722e61da5cd22376dcd8"},
     {file = "setuptools-78.1.0.tar.gz", hash = "sha256:18fd474d4a82a5f83dac888df697af65afa82dec7323d09c3e37d1f14288da54"},
+]
+
+[[package]]
+name = "shell"
+version = "1.0.1"
+summary = "A better way to run shell commands in Python."
+groups = ["default"]
+files = [
+    {file = "shell-1.0.1-py2.py3-none-any.whl", hash = "sha256:64e3347d1dd2c8f3c3f3df5e6ebe9084d768ae20985aef6793854b9f47d4045a"},
+    {file = "shell-1.0.1.tar.gz", hash = "sha256:6fbaa88f85de228ddecef33cb1e9037f4959f6f76942b01769e4139a038f6513"},
 ]
 
 [[package]]
