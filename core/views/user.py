@@ -6,10 +6,14 @@ from rest_framework.viewsets import ModelViewSet
 
 from core.models import User
 from core.serializers import UserCreateSerializer, UserSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+from core.filters import UserFilter
 
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all().order_by('id')
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = UserFilter
 
     def get_serializer_class(self):
         if self.action == 'create':

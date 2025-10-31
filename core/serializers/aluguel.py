@@ -12,9 +12,8 @@ class ServicoAdicionalSerializer(serializers.ModelSerializer):
         fields = ['id', 'nomeServico', 'valor']
 
 class AluguelSerializer(serializers.ModelSerializer):
-    salao_nome = serializers.CharField(source='salao.nome', read_only=True)
     user = UserBaseSerializer(read_only=True)
-    servico = ServicoAdicionalSerializer(many=True, read_only=True)  # <-- aqui
+    servico = ServicoAdicionalSerializer(many=True, read_only=True)
 
     class Meta:
         model = Aluguel

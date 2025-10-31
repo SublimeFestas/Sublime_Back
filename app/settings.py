@@ -118,7 +118,7 @@ FILE_UPLOAD_PERMISSIONS = 0o640
 
 if MODE == 'DEVELOPMENT':
     MY_IP = os.getenv('MY_IP', '127.0.0.1')
-    MEDIA_URL = f'http://{MY_IP}:19003/media/'
+    MEDIA_URL = f'http://127.0.0.1:8000/media/'
 else:
     MEDIA_URL = '/media/'
     CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
@@ -153,9 +153,24 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+}
+
 
 #PASSAGE_APP_ID = os.getenv('PASSAGE_APP_ID', 'app_id')
 #PASSAGE_API_KEY = os.getenv('PASSAGE_API_KEY', 'api_key')
 #PASSAGE_AUTH_STRATEGY = 2
 
 print(f'{MODE = } \n{MEDIA_URL = } \n{DATABASES = }')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'snntos.juliana@gmail.com'        
+EMAIL_HOST_PASSWORD = 'tmaumrwofyvmsmqu'       
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
