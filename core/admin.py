@@ -7,6 +7,7 @@ from core.models import TelefoneUsuario
 
 admin.site.register(models.Endereco)
 admin.site.register(models.Aluguel)
+admin.site.register(models.ServicoAdicional)
 
 class TelefoneUsuarioInline(admin.TabularInline):
     model = TelefoneUsuario
