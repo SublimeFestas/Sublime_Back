@@ -15,8 +15,13 @@ class AluguelViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_class = AluguelFilter
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
     @action(detail=False, methods=['get'], url_path='por-usuario/(?P<user_id>[^/.]+)')
     def por_usuario(self, request, user_id=None):
         alugueis = Aluguel.objects.filter(user_id=user_id)
-        serializer = AluguelSerializer(alugueis, many=True)
+        serializer = AluguelSerializer(alugueis, many=True, context=self.get_serializer_context())
         return Response(serializer.data)

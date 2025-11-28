@@ -17,7 +17,7 @@ class Aluguel(models.Model):
         verbose_name='status',
         default='PENDENTE',
     )
-    data = models.DateField(verbose_name='Data da festa')
+    data = models.DateTimeField(verbose_name='Data da festa')
     data_cadastro = models.DateTimeField(auto_now_add=True)
     desc_festa = models.TextField(verbose_name='Descrição da festa')
     user = models.ForeignKey(

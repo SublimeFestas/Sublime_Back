@@ -29,8 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cloudinary_storage',
-    'cloudinary',
+    #'cloudinary_storage',
+    #'cloudinary',
     'corsheaders',
     'django_extensions',
     'django_filters',
@@ -123,14 +123,16 @@ else:
     MEDIA_URL = '/media/'
     CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STORAGES = {
-        'default': {
-            'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
-        },
-        'staticfiles': {
-            'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
-        },
-    }
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+# STORAGES = {
+#     'default': {
+#         'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
+#     },
+#     'staticfiles': {
+#         'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+#     },
+# }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
