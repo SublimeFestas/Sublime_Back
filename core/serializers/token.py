@@ -16,5 +16,6 @@ class TokenSerializer(TokenObtainPairSerializer):
             'id': self.user.id,
             'email': self.user.email,
             'name': self.user.name,
+            'is_staff': self.user.is_staff,
         }
         return data
